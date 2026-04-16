@@ -1,0 +1,192 @@
+/**
+ * Linear Style CSS Variables for Vue 3 + Element Plus
+ * 适用于 Signage Dashboard 深色主题
+ */
+
+:root {
+  /* ========== 背景层 ========== */
+  --bg-primary: #0D0D0F;
+  --bg-secondary: #141416;
+  --bg-tertiary: #1C1C1F;
+  --bg-elevated: #222225;
+
+  /* ========== 边框 ========== */
+  --border-subtle: #2A2A2E;
+  --border-default: #3A3A3F;
+  --border-strong: #4A4A50;
+
+  /* ========== 文字 ========== */
+  --text-primary: #FAFAFA;
+  --text-secondary: #A0A0A8;
+  --text-tertiary: #6B6B75;
+  --text-inverse: #0D0D0F;
+
+  /* ========== 强调色 ========== */
+  --accent-primary: #5E6AD2;
+  --accent-hover: #6E7AE2;
+  --accent-muted: rgba(94, 106, 210, 0.15);
+
+  /* ========== 语义色 ========== */
+  --success: #26BF94;
+  --success-bg: rgba(38, 191, 148, 0.12);
+  --warning: #F5A623;
+  --warning-bg: rgba(245, 166, 35, 0.12);
+  --error: #F52B3F;
+  --error-bg: rgba(245, 43, 63, 0.12);
+  --info: #5E6AD2;
+  --info-bg: rgba(94, 106, 210, 0.12);
+
+  /* ========== 图表色板 ========== */
+  --chart-1: #5E6AD2;
+  --chart-2: #26BF94;
+  --chart-3: #F5A623;
+  --chart-4: #F52B3F;
+  --chart-5: #3DD9D9;
+
+  /* ========== 间距 ========== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* ========== 圆角 ========== */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* ========== 阴影 ========== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(94, 106, 210, 0.3);
+
+  /* ========== 层级 ========== */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+
+  /* ========== 过渡 ========== */
+  --transition-fast: 0.1s ease;
+  --transition-base: 0.15s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* ========== 全局基础样式 ========== */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== 滚动条样式 ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+/* ========== 文字选中 ========== */
+::selection {
+  background: var(--accent-muted);
+  color: var(--text-primary);
+}
+
+/* ========== Element Plus 覆盖 ========== */
+.el-button--primary {
+  --el-button-bg-color: var(--accent-primary);
+  --el-button-border-color: var(--accent-primary);
+  --el-button-hover-bg-color: var(--accent-hover);
+  --el-button-hover-border-color: var(--accent-hover);
+  --el-button-text-color: white;
+}
+
+.el-card {
+  --el-card-bg-color: var(--bg-secondary);
+  --el-card-border-color: var(--border-subtle);
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.el-input__wrapper {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: none !important;
+}
+
+.el-input__wrapper:hover {
+  border-color: var(--border-default);
+}
+
+.el-input__wrapper.is-focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-muted) !important;
+}
+
+.el-input__inner {
+  color: var(--text-primary);
+}
+
+.el-input__inner::placeholder {
+  color: var(--text-tertiary);
+}
+
+.el-table {
+  --el-table-bg-color: transparent;
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: var(--bg-secondary);
+  --el-table-row-hover-bg-color: var(--bg-tertiary);
+  --el-table-border-color: var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.el-table th.el-table__cell {
+  background-color: var(--bg-secondary);
+  color: var(--text-tertiary);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.el-table td.el-table__cell {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.el-pagination {
+  --el-pagination-bg-color: var(--bg-tertiary);
+  --el-pagination-button-bg-color: var(--bg-tertiary);
+  --el-pagination-hover-color: var(--accent-primary);
+}
+
+/* ========== ECharts 主题覆盖 ========== */
+.echarts-tooltip {
+  background-color: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--text-primary) !important;
+}
