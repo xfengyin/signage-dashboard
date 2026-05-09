@@ -1,0 +1,89 @@
+/**
+ * @fileOverview 常量导出 - 企业级Agent框架的统一常量模块
+ * @module constants
+ * @description 导出所有常量模块，提供错误常量、状态常量等统一入口
+ */
+
+export * from './errors';
+export * from './status';
+
+export { VERSION } from '../core/constants';
+export {
+  DEFAULT_TIMEOUTS,
+  DEFAULT_RETRY,
+  DEFAULT_DELAYS,
+  TOKEN_LIMITS,
+  MODEL_DEFAULTS,
+  EXECUTION_LIMITS,
+  MESSAGE_LIMITS,
+  RATE_LIMITS,
+  BUFFER_CONFIG,
+  CACHE_CONFIG,
+  QUEUE_CONFIG,
+  LOG_LEVELS,
+  API_ENDPOINTS,
+  DEFAULT_HEADERS,
+  CONFIG_KEYS,
+  CONTEXT_KEYS,
+  OBSERVER_EVENTS,
+  HEALTH_CHECKS,
+} from '../core/constants';
+
+export type { TimeoutKey, RetryKey, TokenLimitKey, ExecutionLimitKey } from '../core/constants';
+
+export const CONSTANTS = {
+  errors: {
+    HTTP_STATUS,
+    ERROR_PREFIX,
+    MODEL_ERRORS,
+    TOOL_ERRORS,
+    EXECUTION_ERRORS,
+    AUTH_ERRORS,
+    RATE_LIMIT_ERRORS,
+    TIMEOUT_ERRORS,
+    VALIDATION_ERRORS,
+    CONFIG_ERRORS,
+    CIRCUIT_BREAKER_ERRORS,
+    RETRY_ERRORS,
+    NETWORK_ERRORS,
+    STORAGE_ERRORS,
+    SECURITY_ERRORS,
+    MIDDLEWARE_ERRORS,
+    PLUGIN_ERRORS,
+    ERROR_MESSAGES,
+    ERROR_SEVERITY,
+    ERROR_RECOVERY_STRATEGY,
+    ALL_ERROR_CODES,
+  },
+  status: {
+    EXECUTION_STATUS,
+    EXECUTION_PHASES,
+    TOOL_CALL_STATUS,
+    AGENT_STATUS,
+    SESSION_STATUS,
+    MESSAGE_ROLE,
+    CONTENT_TYPE,
+    TOOL_SELECTION_STRATEGY,
+    CIRCUIT_BREAKER_STATE,
+    RATE_LIMIT_STRATEGY,
+    BACKOFF_STRATEGY,
+    LOG_LEVEL,
+    HEALTH_STATUS,
+    LIFECYCLE_STATE,
+    SKILL_MATCH_STATUS,
+    OBSERVER_EVENT_TYPE,
+    MODEL_TYPE,
+    MODEL_PROVIDER,
+    STORAGE_TYPE,
+    CACHE_STRATEGY,
+    MIDDLEWARE_TYPE,
+    PLUGIN_TYPE,
+    ERROR_SEVERITY_LEVEL,
+    SAMPLING_DECISION,
+    CONTENT_FILTER_REASON,
+    STOP_REASON,
+    STATUS_MESSAGES,
+  },
+} as const;
+
+export type Constants = typeof CONSTANTS;

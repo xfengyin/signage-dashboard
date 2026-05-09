@@ -1,0 +1,189 @@
+agent:
+  name: enterprise-agent
+  description: Enterprise AI Agent Framework
+  version: "1.0.0"
+  defaultModel: gpt-4-turbo
+  
+  models:
+    gpt-4-turbo:
+      provider: openai
+      model: gpt-4-turbo
+      temperature: 0.7
+      maxTokens: 4096
+      topP: 1.0
+      timeout: 60000
+      retryConfig:
+        maxRetries: 3
+        initialDelayMs: 1000
+        maxDelayMs: 30000
+        backoffMultiplier: 2
+    
+    gpt-3.5-turbo:
+      provider: openai
+      model: gpt-3.5-turbo
+      temperature: 0.7
+      maxTokens: 2048
+      timeout: 30000
+      retryConfig:
+        maxRetries: 2
+        initialDelayMs: 500
+        maxDelayMs: 10000
+        backoffMultiplier: 2
+    
+    claude-3-opus:
+      provider: anthropic
+      model: claude-3-opus-20240229
+      temperature: 0.7
+      maxTokens: 4096
+      timeout: 60000
+      retryConfig:
+        maxRetries: 3
+        initialDelayMs: 1000
+        maxDelayMs: 30000
+        backoffMultiplier: 2
+    
+    claude-3-sonnet:
+      provider: anthropic
+      model: claude-3-sonnet-20240229
+      temperature: 0.7
+      maxTokens: 4096
+      timeout: 60000
+  
+  tools:
+    web-search:
+      name: web-search
+      description: Search the web for information
+      enabled: true
+      config:
+        maxResults: 10
+        timeout: 15000
+      rateLimit:
+        maxRequests: 60
+        windowMs: 60000
+        queueSize: 100
+    
+    file-system:
+      name: file-system
+      description: Read and write files
+      enabled: true
+      config:
+        basePath: ./workspace
+        allowedExtensions: [.ts, .js, .json, .yaml, .md]
+        maxFileSize: 10485760
+      rateLimit:
+        maxRequests: 100
+        windowMs: 60000
+    
+    code-executor:
+      name: code-executor
+      description: Execute code in sandboxed environment
+      enabled: true
+      config:
+        languages: [javascript, python]
+        timeout: 30000
+        memoryLimit: 256
+      rateLimit:
+        maxRequests: 20
+        windowMs: 60000
+    
+    api-client:
+      name: api-client
+      description: Make HTTP requests
+      enabled: true
+      config:
+        timeout: 30000
+        followRedirects: true
+        maxRetries: 3
+      rateLimit:
+        maxRequests: 100
+        windowMs: 60000
+    
+    database:
+      name: database
+      description: Query and manage databases
+      enabled: false
+      config:
+        poolSize: 10
+        connectionTimeout: 5000
+  
+  skills:
+    document-generator:
+      name: document-generator
+      description: Generate documents from templates
+      enabled: true
+      config:
+        templateDir: ./templates
+        outputDir: ./output
+      dependencies: []
+    
+    data-analyzer:
+      name: data-analyzer
+      description: Analyze and process data
+      enabled: true
+      config:
+        maxRows: 100000
+        supportedFormats: [csv, json, xlsx]
+      dependencies: []
+    
+    workflow-orchestrator:
+      name: workflow-orchestrator
+      description: Orchestrate multi-step workflows
+      enabled: true
+      config:
+        maxSteps: 50
+        stepTimeout: 60000
+      dependencies: [code-executor, api-client]
+  
+  maxConcurrentTasks: 10
+  taskTimeoutMs: 300000
+  enableHistory: true
+  maxHistoryLength: 100
+
+logging:
+  level: info
+  format: json
+  output: stdout
+  filePath: ./logs/agent.log
+  maxFileSize: 10485760
+  maxFiles: 5
+  redactPatterns:
+    - password
+    - apiKey
+    - secret
+    - token
+
+security:
+  apiKeyHeader: X-API-Key
+  allowedOrigins:
+    - https://app.example.com
+    - https://admin.example.com
+  allowedIPs: []
+  rateLimitEnabled: true
+  rateLimit:
+    maxRequests: 1000
+    windowMs: 60000
+    queueSize: 500
+
+environments:
+  development:
+    name: development
+    debug: true
+  
+  staging:
+    name: staging
+    debug: false
+  
+  production:
+    name: production
+    debug: false
+
+remote:
+  url: https://config.example.com/api/config
+  authToken: ${REMOTE_CONFIG_TOKEN}
+  pollIntervalMs: 60000
+  timeout: 10000
+  retryConfig:
+    maxRetries: 3
+    initialDelayMs: 1000
+    maxDelayMs: 30000
+    backoffMultiplier: 2
